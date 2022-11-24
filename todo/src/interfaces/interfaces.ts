@@ -9,5 +9,5 @@ export interface ITodo {
     id: string,
     title: string,
     isDone: boolean,
-    noteId: string
+    noteId: string | undefined
 }

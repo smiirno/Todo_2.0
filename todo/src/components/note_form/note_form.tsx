@@ -14,7 +14,6 @@ const NoteForm = () => {
     const [disableBtn, setDisableBtn] = useState(true);
     const [todos, setTodos] = useState<ITodo[]>([]);
 
-
     const {notes} = useAppSelector(state => state.notesReducer)
     const noteId = notes.length.toString()
     const dispatch = useAppDispatch()
@@ -74,7 +73,9 @@ const NoteForm = () => {
                 <Button onClick={addTodoHandler}>Добавить</Button>
             </div>
             {todos.map((todo) => {
-                return <h4 key={todo.id}>{todo.title}</h4>
+                return <div key={todo.id} className={'todo'}>
+                    {todo.title}
+                </div>
             })}
             <Button type={'submit'} disabled={disableBtn}>Сохранить</Button>
 

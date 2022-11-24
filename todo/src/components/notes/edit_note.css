@@ -1,5 +1,20 @@
-.edit_note {
-    width: 40vw;
-    margin: auto;
-    margin-top: 30px;
+.edit_form {
+    width: 400px;
+}
+
+.edit_form ul {
+    list-style: none;
+}
+
+.add_todo_container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.note_btn_group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
 }

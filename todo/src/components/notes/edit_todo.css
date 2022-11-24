@@ -1,0 +1,27 @@
+.edit_todo_form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit_todo_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-bottom: 1px solid #469597;
+}
+
+.edit_todo_checkbox_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit_todo_checkbox_container h4 {
+    font-weight: normal;
+}
+
+.done_todo {
+    text-decoration: line-through;
+}

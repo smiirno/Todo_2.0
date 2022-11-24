@@ -3,7 +3,22 @@
     align-items: center;
     justify-content: space-between;
     background-color: #469597;
-    padding: 5px 10px;
+    line-height: 30px;
+    padding: 10px 10px;
     margin: 20px 0;
     border-radius: 5px;
+}
+
+.todo_list {
+    list-style: none;
+    border: 1px solid #469597;
+    border-radius: 5px;
+}
+
+.todo_list_item {
+    margin: 10px;
+}
+
+.done_todo {
+    text-decoration: line-through;
 }

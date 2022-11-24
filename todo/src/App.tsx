@@ -9,13 +9,14 @@ import EditNote from "./components/notes/edit_note";
 function App() {
     return (
         <div>
-            <BrowserRouter>
+            {/*<BrowserRouter>*/}
                 <Navbar/>
-                <Routes>
-                    <Route path={'/'} element={<NotesList/>}/>
-                    <Route path={'/edit/:id'} element={<EditNote/>}/>
-                </Routes>
-            </BrowserRouter>
+                <NotesList/>
+                {/*<Routes>*/}
+                {/*    <Route path={'/'} element={<NotesList/>}/>*/}
+                {/*    <Route path={'/edit/:id'} element={<EditNote/>}/>*/}
+                {/*</Routes>*/}
+            {/*</BrowserRouter>*/}
         </div>
     );
 }
