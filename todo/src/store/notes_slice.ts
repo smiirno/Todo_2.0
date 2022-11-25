@@ -26,7 +26,7 @@ export const notesSlice = createSlice({
             const indexTodo = state.notes[indexNote].todos.findIndex(todo => todo.id === action.payload.id)
             state.notes[indexNote].todos[indexTodo].isDone = !state.notes[indexNote].todos[indexTodo].isDone
         },
-        removeNote (state, action: PayloadAction<string | undefined>) {
+        removeNote (state, action: PayloadAction<number>) {
             state.notes = state.notes.filter(note => note.id !== action.payload)
         },
         removeTodo (state, action: PayloadAction<ITodo>) {

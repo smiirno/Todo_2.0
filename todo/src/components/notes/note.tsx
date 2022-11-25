@@ -19,7 +19,7 @@ const Note = (note: INote) => {
                 <ul className={'note__todo-list'}>
                     {note.todos.map((todo) => {
                         return <li key={todo.id} className={todo.isDone ? 'note__todo-list__done-todo m-10' : 'm-10'}>
-                            {parseInt(todo.id) + 1}. {todo.title}
+                            {todo.id + 1}. {todo.title}
                         </li>
                     })}
                 </ul>

@@ -29,7 +29,7 @@ const EditNote = (note: INote) => {
 
     const addTodoHandler = () => {
         const todo: ITodo = {
-            id: note.todos.length.toString(),
+            id: note.todos.length,
             title: valueTodo,
             isDone: false,
             noteId: note.id

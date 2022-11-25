@@ -19,7 +19,7 @@ const CreateNoteForm = () => {
     const [todos, setTodos] = useState<ITodo[]>([]);
 
     const {notes} = useAppSelector(state => state.notesReducer)
-    const noteId = notes.length.toString()
+    const noteId = notes.length
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const CreateNoteForm = () => {
     const addTodoHandler = () => {
         const copy = Object.assign([], todos)
         const newTodo: ITodo = {
-            id: todos.length.toString(),
+            id: todos.length,
             title: valueTodo,
             isDone: false,
             noteId: noteId
@@ -88,7 +88,7 @@ const CreateNoteForm = () => {
 
             {todos.map((todo) => {
                 return <div key={todo.id} className={'create-note-form__todo'}>
-                    {todo.title}
+                    {todo.id + 1}. {todo.title}
                 </div>
             })}
 

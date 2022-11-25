@@ -1,13 +1,13 @@
 export interface INote {
-    id: string | undefined,
+    id: number,
     title: string,
     todos: ITodo[],
     isDone: boolean
 }
 
 export interface ITodo {
-    id: string,
+    id: number,
     title: string,
     isDone: boolean,
-    noteId: string | undefined
+    noteId: number
 }
