@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ITodo} from "../../interfaces/interfaces";
 import {useAppDispatch} from "../../store/redux";
 import {toggleComplete, removeTodo, updateTodo} from "../../store/notes_slice";
@@ -51,7 +51,7 @@ const EditTodo = (todo: ITodo) => {
             {isEditTodo
                 ?
                 <form onSubmit={event => submitHandler(event)} className={'edit-todo-form'}>
-                    <TextField type={'text'}  variant={'standard'} margin={'dense'} fullWidth
+                    <TextField type={'text'} variant={'standard'} margin={'dense'} fullWidth
                                defaultValue={valueTodo} onChange={event => changeHandler(event)}/>
                     <IconButton type={'submit'} title={'Сохранить изменения'}>
                         <DoneAllIcon sx={IconStyle}/>
@@ -60,7 +60,7 @@ const EditTodo = (todo: ITodo) => {
                 :
                 <div className={'edit-todo-form__todo mtb-10'}>
                     <div className={'edit-todo-form__edit-todo'}>
-                        <Checkbox size={'small'} defaultChecked={todo.isDone} onClick={checkboxHandler}/>
+                        <Checkbox size={'small'} checked={todo.isDone} onClick={checkboxHandler}/>
                         <h4 className={todo.isDone ? 'note__todo-list__done-todo' : ''}>{todo.title}</h4>
                     </div>
                     <div>

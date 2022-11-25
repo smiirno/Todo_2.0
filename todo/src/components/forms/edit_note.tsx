@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppDispatch} from "../../store/redux";
 import {addTodo, removeNote, updateNote} from "../../store/notes_slice";
 import {INote, ITodo} from "../../interfaces/interfaces";
@@ -18,6 +18,15 @@ const EditNote = (note: INote) => {
 
     const [valueNote, setValueNote] = useState<string>(note.title);
     const [valueTodo, setValueTodo] = useState<string>('');
+    const [disableAddTodo, setDisableAddTodo] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (valueTodo !== '') {
+            setDisableAddTodo(false)
+        } else {
+            setDisableAddTodo(true)
+        }
+    }, [valueTodo])
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         if (event.currentTarget.id === 'note') {
@@ -63,7 +72,7 @@ const EditNote = (note: INote) => {
                 <div className={'edit-note-form__add-todo__container'}>
                     <TextField type={'text'} id={'todo'} variant={'standard'} label={'Задача'} fullWidth margin={'dense'}
                                value={valueTodo} onChange={event => changeHandler(event)}/>
-                    <IconButton onClick={addTodoHandler} title={'Добавить'}>
+                    <IconButton onClick={addTodoHandler} title={'Добавить'} disabled={disableAddTodo}>
                         <AddIcon sx={IconStyle}/>
                     </IconButton>
                 </div>
@@ -84,7 +93,7 @@ const EditNote = (note: INote) => {
             </form>
 
             <div className={'mt-20'}>
-                <h4>Существующие задачи:</h4>
+                {note.todos.length === 0 ? <h4>Список задач пуст</h4>: <h4>Добавленные задачи:</h4>}
                 <ul>
                     {note.todos.map((todo) => {
                         return <EditTodo key={todo.id} {...todo}/>

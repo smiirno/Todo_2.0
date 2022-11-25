@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../store/redux";
 import {addNote} from "../../store/notes_slice";
-import {ITodo} from "../../interfaces/interfaces";
+import {INote, ITodo} from "../../interfaces/interfaces";
 import {createNote} from "../../functions/createNote";
 import {Button, IconButton, TextField} from "@mui/material";
 import {ContainedBtnStyle, IconStyle} from "../../custom_MUI_styles/custom_MUI_styles";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from '@mui/icons-material/Add';
 import './create_note_form.css'
+import {createTodo} from "../../functions/createTodo";
 
 
 const CreateNoteForm = () => {
@@ -47,12 +48,7 @@ const CreateNoteForm = () => {
 
     const addTodoHandler = () => {
         const copy = Object.assign([], todos)
-        const newTodo: ITodo = {
-            id: todos.length,
-            title: valueTodo,
-            isDone: false,
-            noteId: noteId
-        }
+        const newTodo: ITodo = createTodo(todos.length, valueTodo, noteId)
         copy.push(newTodo)
         setTodos(copy)
         setValueTodo('')
@@ -60,13 +56,11 @@ const CreateNoteForm = () => {
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (todos.length === 0) {
-            console.log('Сработал if', todos, valueTodo)
-            // setTodos([{id: '0', title: valueTodo, noteId: noteId, isDone: false}])
-            // addTodoHandler()
-            console.log(todos)
+        const note: INote = createNote(valueNote, todos, noteId)
+        if (todos.length === 0 && valueTodo !== '') {
+            const newTodo: ITodo = createTodo(0, valueTodo, noteId)
+            note.todos.push(newTodo)
         }
-        const note = createNote(valueNote, todos, noteId)
         dispatch(addNote(note))
         setValueNote('')
         setValueTodo('')
