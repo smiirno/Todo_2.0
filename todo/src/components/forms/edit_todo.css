@@ -1,27 +1,22 @@
-.edit_todo_form {
+.edit-todo-form {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.edit_todo_item {
+.edit-todo-form__todo {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0;
     border-bottom: 1px solid #469597;
 }
 
-.edit_todo_checkbox_container {
+.edit-todo-form__edit-todo {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.edit_todo_checkbox_container h4 {
+.edit-todo-form__edit-todo h4 {
     font-weight: normal;
-}
-
-.done_todo {
-    text-decoration: line-through;
 }

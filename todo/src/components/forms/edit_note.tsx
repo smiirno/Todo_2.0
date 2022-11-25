@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
-import {Link, useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../store/redux";
-import {addTodo, doneTodo, removeNote, updateNote} from "../../store/notes_slice";
-import {Button, Checkbox, TextField} from "@mui/material";
-import './edit_note.css'
+import {useAppDispatch} from "../../store/redux";
+import {addTodo, removeNote, updateNote} from "../../store/notes_slice";
 import {INote, ITodo} from "../../interfaces/interfaces";
 import EditTodo from "./edit_todo";
 import ModalWindow from "../modal/modal_window";
+import {Button, IconButton, TextField} from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import {ContainedBtnStyle, IconStyle} from "../../custom_MUI_styles/custom_MUI_styles";
+import './edit_note.css'
 
-
-const btnStyle = {
-    backgroundColor: '#469597',
-    color: '#DDBEAA',
-}
 
 const EditNote = (note: INote) => {
 
@@ -58,34 +55,43 @@ const EditNote = (note: INote) => {
     }
 
     return(
-        <div className={'edit_form'}>
+        <div className={'edit-note-form'}>
             <form onSubmit={event => submitHandler(event)}>
                 <TextField type={'text'} id={'note'} variant={'standard'} defaultValue={valueNote} fullWidth margin={'dense'}
                            onChange={event => changeHandler(event)}/>
-                <div className={'add_todo_container'}>
+
+                <div className={'edit-note-form__add-todo__container'}>
                     <TextField type={'text'} id={'todo'} variant={'standard'} label={'Задача'} fullWidth margin={'dense'}
                                value={valueTodo} onChange={event => changeHandler(event)}/>
-                    <Button onClick={addTodoHandler}>Добавить</Button>
+                    <IconButton onClick={addTodoHandler} title={'Добавить'}>
+                        <AddIcon sx={IconStyle}/>
+                    </IconButton>
                 </div>
-                <div className={'note_btn_group'}>
-                    <Button type={'submit'} sx={btnStyle} variant="contained" startIcon={<SaveIcon />}>Сохранить</Button>
-                    <ModalWindow btnTitle={'Удалить заметку'}>
+
+                <div className={'edit-note-form__btn-group mt-20'}>
+                    <Button type={'submit'} sx={ContainedBtnStyle} variant="contained" startIcon={<SaveIcon />}>Сохранить</Button>
+                    <ModalWindow btnTitle={'Удалить заметку'} btnType={'error'}>
                         <div>
                             <h4>Подтвердите удаление заметки</h4>
-                            <div>
-                                <Button onClick={removeNoteHandler}>Подтверждаю</Button>
+                            <div style={{marginTop: 20}}>
+                                <Button onClick={removeNoteHandler} sx={ContainedBtnStyle} variant="contained" startIcon={<ThumbUpOffAltIcon />}>
+                                    Подтверждаю
+                                </Button>
                             </div>
                         </div>
                     </ModalWindow>
                 </div>
             </form>
-            <br/>
-            <h4>Существующие задачи:</h4>
-            <ul>
-                {note.todos.map((todo) => {
-                    return <EditTodo key={todo.id} {...todo}/>
-                })}
-            </ul>
+
+            <div className={'mt-20'}>
+                <h4>Существующие задачи:</h4>
+                <ul>
+                    {note.todos.map((todo) => {
+                        return <EditTodo key={todo.id} {...todo}/>
+                    })}
+                </ul>
+            </div>
+
         </div>
     )
 };

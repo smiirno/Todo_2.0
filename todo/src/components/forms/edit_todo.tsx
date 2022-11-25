@@ -1,21 +1,14 @@
 import React, {useState} from 'react';
 import {ITodo} from "../../interfaces/interfaces";
-import {Button, Checkbox, TextField} from "@mui/material";
+import {useAppDispatch} from "../../store/redux";
+import {doneTodo, removeTodo, updateTodo} from "../../store/notes_slice";
+import {Checkbox, IconButton, TextField} from "@mui/material";
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import ClearIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
-import {useAppDispatch} from "../../store/redux";
-import {doneTodo, removeTodo, updateTodo} from "../../store/notes_slice";
+import {IconStyle} from "../../custom_MUI_styles/custom_MUI_styles";
 import './edit_todo.css'
 
-
-const iconStyle = {
-    cursor: 'pointer',
-    color: '#469597',
-    bgcolor: '#DDBEAA',
-    borderRadius: '5px',
-    padding: '3px'
-}
 
 const EditTodo = (todo: ITodo) => {
 
@@ -55,27 +48,28 @@ const EditTodo = (todo: ITodo) => {
 
     return (
         <li>
-            {isEditTodo ?
-                <form onSubmit={event => submitHandler(event)} className={'edit_todo_form'}>
+            {isEditTodo
+                ?
+                <form onSubmit={event => submitHandler(event)} className={'edit-todo-form'}>
                     <TextField type={'text'}  variant={'standard'} margin={'dense'} fullWidth
                                defaultValue={valueTodo} onChange={event => changeHandler(event)}/>
-                    <Button type={'submit'} title={'Сохранить изменения'}>
-                        <DoneAllIcon sx={iconStyle}/>
-                    </Button>
+                    <IconButton type={'submit'} title={'Сохранить изменения'}>
+                        <DoneAllIcon sx={IconStyle}/>
+                    </IconButton>
                 </form>
                 :
-                <div className={'edit_todo_item'}>
-                    <div className={'edit_todo_checkbox_container'}>
+                <div className={'edit-todo-form__todo mtb-10'}>
+                    <div className={'edit-todo-form__edit-todo'}>
                         <Checkbox size={'small'} defaultChecked={todo.isDone} onClick={checkboxHandler}/>
-                        <h4 className={todo.isDone ? 'done_todo' : ''}>{todo.title}</h4>
+                        <h4 className={todo.isDone ? 'note__todo-list__done-todo' : ''}>{todo.title}</h4>
                     </div>
                     <div>
-                        <Button onClick={editHandler} title={'Редактировать задачу'}>
-                            <EditIcon sx={iconStyle}/>
-                        </Button>
-                        <Button onClick={removeTodoHandler} title={'Удалить задачу'}>
-                            <ClearIcon sx={iconStyle} />
-                        </Button>
+                        <IconButton onClick={editHandler} title={'Редактировать задачу'}>
+                            <EditIcon sx={IconStyle}/>
+                        </IconButton>
+                        <IconButton onClick={removeTodoHandler} title={'Удалить задачу'}>
+                            <ClearIcon sx={IconStyle} />
+                        </IconButton>
                     </div>
                 </div>
             }

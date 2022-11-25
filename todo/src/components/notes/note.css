@@ -9,16 +9,12 @@
     border-radius: 5px;
 }
 
-.todo_list {
+.note__todo-list {
     list-style: none;
     border: 1px solid #469597;
     border-radius: 5px;
 }
 
-.todo_list_item {
-    margin: 10px;
-}
-
-.done_todo {
+.note__todo-list__done-todo {
     text-decoration: line-through;
 }

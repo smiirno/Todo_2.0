@@ -1,20 +1,19 @@
-.edit_form {
+.edit-note-form {
     width: 400px;
 }
 
-.edit_form ul {
+.edit-note-form ul {
     list-style: none;
 }
 
-.add_todo_container {
+.edit-note-form__add-todo__container {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 }
 
-.note_btn_group {
+.edit-note-form__btn-group {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
 }

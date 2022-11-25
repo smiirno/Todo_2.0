@@ -1,0 +1,14 @@
+.create-note-form {
+    width: 400px;
+}
+
+.create-note-form__add-todo {
+    display: flex;
+    align-items: flex-end;
+}
+
+.create-note-form__todo {
+    margin: 10px 0;
+    border-bottom: 1px solid #469597;
+    line-height: 40px;
+}

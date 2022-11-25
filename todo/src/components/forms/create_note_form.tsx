@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {Button, TextField} from "@mui/material";
-import './note_form.css'
 import {useAppDispatch, useAppSelector} from "../../store/redux";
 import {addNote} from "../../store/notes_slice";
 import {ITodo} from "../../interfaces/interfaces";
 import {createNote} from "../../functions/createNote";
+import {Button, IconButton, TextField} from "@mui/material";
+import {ContainedBtnStyle, IconStyle} from "../../custom_MUI_styles/custom_MUI_styles";
+import SaveIcon from "@mui/icons-material/Save";
+import AddIcon from '@mui/icons-material/Add';
+import './create_note_form.css'
 
 
-const NoteForm = () => {
+const CreateNoteForm = () => {
 
     const [valueNote, setValueNote] = useState<string>('');
     const [valueTodo, setValueTodo] = useState<string>('');
-    const [disableBtn, setDisableBtn] = useState(true);
+    const [disableSaveBtn, setDisableSaveBtn] = useState<boolean>(true);
+    const [disableAddTodoBtn, setDisableAddTodoBtn] = useState<boolean>(true);
     const [todos, setTodos] = useState<ITodo[]>([]);
 
     const {notes} = useAppSelector(state => state.notesReducer)
@@ -20,11 +24,16 @@ const NoteForm = () => {
 
     useEffect(() => {
         if (valueNote !== '') {
-            setDisableBtn(false)
+            setDisableSaveBtn(false)
         } else {
-            setDisableBtn(true)
+            setDisableSaveBtn(true)
         }
-    }, [valueNote]);
+        if (valueTodo !== '') {
+            setDisableAddTodoBtn(false)
+        } else {
+            setDisableAddTodoBtn(true)
+        }
+    }, [valueNote, valueTodo]);
 
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -52,8 +61,9 @@ const NoteForm = () => {
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (todos.length === 0) {
-            console.log(todos)
-            setTodos([{id: '0', title: valueTodo, noteId: noteId, isDone: false}])
+            console.log('Сработал if', todos, valueTodo)
+            // setTodos([{id: '0', title: valueTodo, noteId: noteId, isDone: false}])
+            // addTodoHandler()
             console.log(todos)
         }
         const note = createNote(valueNote, todos, noteId)
@@ -64,23 +74,32 @@ const NoteForm = () => {
     }
 
     return (
-        <form onSubmit={event => submitHandler(event)} className={'note_form'}>
-            <TextField type={'text'} id={'note'} label="Название заметки" variant="standard" autoFocus fullWidth margin={'normal'}
+        <form onSubmit={event => submitHandler(event)} className={'create-note-form'}>
+            <TextField type={'text'} id={'note'} label="Название заметки" variant="standard" fullWidth margin={'normal'}
                        value={valueNote} onChange={event => changeHandler(event)} />
-            <div style={{display: "flex", alignItems: "flex-end"}}>
+
+            <div className={'create-note-form__add-todo'}>
                 <TextField type={'text'} id={'todo'} label="Задача" variant={'standard'} fullWidth
                            value={valueTodo} onChange={event => changeHandler(event)}/>
-                <Button onClick={addTodoHandler}>Добавить</Button>
+                <IconButton onClick={addTodoHandler} title={'Добавить'} disabled={disableAddTodoBtn}>
+                    <AddIcon sx={IconStyle}/>
+                </IconButton>
             </div>
+
             {todos.map((todo) => {
-                return <div key={todo.id} className={'todo'}>
+                return <div key={todo.id} className={'create-note-form__todo'}>
                     {todo.title}
                 </div>
             })}
-            <Button type={'submit'} disabled={disableBtn}>Сохранить</Button>
+
+            <div className={'mt-20'}>
+                <Button type={'submit'} disabled={disableSaveBtn} sx={ContainedBtnStyle} variant={'contained'} startIcon={<SaveIcon />}>
+                    Сохранить
+                </Button>
+            </div>
 
         </form>
     );
 };
 
-export default NoteForm;
+export default CreateNoteForm;

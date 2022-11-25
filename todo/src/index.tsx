@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {setupStore} from "./store/store";
 import {Provider} from "react-redux";
+import {ThemeProvider} from "@mui/material";
 
 
 const store = setupStore()

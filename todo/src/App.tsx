@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from "./components/navbar/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotesList from "./components/notes/notes_list";
-import EditNote from "./components/notes/edit_note";
+import EditNote from "./components/forms/edit_note";
 
 
 function App() {
