@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ITodo} from "../../interfaces/interfaces";
 import {useAppDispatch} from "../../store/redux";
-import {doneTodo, removeTodo, updateTodo} from "../../store/notes_slice";
+import {toggleComplete, removeTodo, updateTodo} from "../../store/notes_slice";
 import {Checkbox, IconButton, TextField} from "@mui/material";
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -22,7 +22,7 @@ const EditTodo = (todo: ITodo) => {
     }
 
     const checkboxHandler = () => {
-        dispatch(doneTodo(todo))
+        dispatch(toggleComplete(todo))
     }
 
     const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {

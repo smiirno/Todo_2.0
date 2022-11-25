@@ -21,7 +21,7 @@ export const notesSlice = createSlice({
             const index = state.notes.findIndex(note => note.id === action.payload.noteId)
             state.notes[index].todos.push(action.payload)
         },
-        doneTodo (state, action: PayloadAction<ITodo>) {
+        toggleComplete (state, action: PayloadAction<ITodo>) {
             const indexNote = state.notes.findIndex(note => note.id === action.payload.noteId)
             const indexTodo = state.notes[indexNote].todos.findIndex(todo => todo.id === action.payload.id)
             state.notes[indexNote].todos[indexTodo].isDone = !state.notes[indexNote].todos[indexTodo].isDone
@@ -45,5 +45,5 @@ export const notesSlice = createSlice({
     }
 })
 
-export const {addNote, addTodo, doneTodo, removeNote, removeTodo, updateNote, updateTodo} = notesSlice.actions
+export const {addNote, addTodo, toggleComplete, removeNote, removeTodo, updateNote, updateTodo} = notesSlice.actions
 export default notesSlice.reducer
