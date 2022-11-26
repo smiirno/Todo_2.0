@@ -3,6 +3,18 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 100px;
+    height: 150px;
     background-color: #008891;
+}
+
+.quote-container {
+    width: 60vw;
+    padding: 10px;
+    border: 2px solid #CDCBA6;
+    border-radius: 10px;
+    font-style: oblique;
+}
+
+.quote__owner {
+    text-align: right;
 }

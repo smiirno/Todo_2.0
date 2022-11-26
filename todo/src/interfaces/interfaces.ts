@@ -10,3 +10,10 @@ export interface ITodo {
     isDone: boolean,
     noteId: number
 }
+
+export interface IPhrase {
+    id: number,
+    owner: string,
+    occupation: string,
+    phrase: string
+}
