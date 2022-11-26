@@ -57,8 +57,7 @@ const EditNote = (note: INote) => {
         const updatedNote: INote = {
             id: copy.id,
             title: valueNote,
-            todos: copy.todos,
-            isDone: false
+            todos: copy.todos
         }
         dispatch(updateNote(updatedNote))
     }

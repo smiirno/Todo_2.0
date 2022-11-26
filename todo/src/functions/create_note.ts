@@ -4,8 +4,7 @@ export const createNote = (title: string, todos: ITodo[], id: number) => {
     const note: INote = {
         id: id,
         title: title,
-        todos: todos,
-        isDone: false
+        todos: todos
     }
     return note
 }

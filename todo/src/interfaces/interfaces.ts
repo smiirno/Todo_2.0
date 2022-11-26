@@ -1,8 +1,7 @@
 export interface INote {
     id: number,
     title: string,
-    todos: ITodo[],
-    isDone: boolean
+    todos: ITodo[]
 }
 
 export interface ITodo {

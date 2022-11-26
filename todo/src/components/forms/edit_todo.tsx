@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ITodo} from "../../interfaces/interfaces";
 import {useAppDispatch} from "../../store/redux";
 import {toggleComplete, removeTodo, updateTodo} from "../../store/notes_slice";

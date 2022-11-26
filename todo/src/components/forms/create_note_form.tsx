@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../store/redux";
 import {addNote} from "../../store/notes_slice";
 import {INote, ITodo} from "../../interfaces/interfaces";
-import {createNote} from "../../functions/createNote";
+import {createNote} from "../../functions/create_note";
 import {Button, IconButton, TextField} from "@mui/material";
 import {ContainedBtnStyle, IconStyle} from "../../custom_MUI_styles/custom_MUI_styles";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from '@mui/icons-material/Add';
 import './create_note_form.css'
-import {createTodo} from "../../functions/createTodo";
+import {createTodo} from "../../functions/create_todo";
 
 
 const CreateNoteForm = () => {
