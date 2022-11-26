@@ -9,6 +9,7 @@
 Стек:
 - React Typescript
 - Redux Toolkit
+- Redux Persist
 - Jest
 - Material UI
 
